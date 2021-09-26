@@ -6,16 +6,14 @@ const inputFile = './input-example';
 const outputFile = './output-example';
 
 const rl = readline.createInterface({
- input: fs.createReadStream(inputFile),
- output: process.stdout,
- terminal: false
+  input: fs.createReadStream(inputFile),
+  output: process.stdout,
+  terminal: false
 });
 
 const names = [];
 
-rl.on('line', function (line) {
- names.push(line);
-});
+rl.on('line', (line) => names.push(line));
 
 rl.on('close', () => {
   const total = [...names];
