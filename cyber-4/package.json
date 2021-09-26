@@ -1,0 +1,14 @@
+{
+  "name": "john",
+  "version": "1.0.0",
+  "description": "",
+  "main": "transfer.js",
+  "scripts": {
+    "start": "node transfer.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "lodash": "^4.17.21"
+  }
+}
