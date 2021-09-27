@@ -10,6 +10,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <fcntl.h>
+#include <arpa/inet.h>
 
 #define BUF_SIZE 60
 #define MAXSIZE 300
