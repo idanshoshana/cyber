@@ -46,7 +46,7 @@ int main(int argc, char *argv[])
   ssize = sizeof(dest); // Get dest size
 
   printf("Connected successfully\n");
-  printf("Enter your username/password/message please: ");
+  printf("Enter your username/password: ");
   scanf("%s",userpassword);
 
   result_value = sendto(socket_fd, userpassword, MAXSIZE, 0, (struct sockaddr *)&dest, sizeof(dest));

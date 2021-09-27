@@ -36,36 +36,37 @@ int main(int argc, char *argv[])
 
   printf("Connected successfully\n");
 
-  result_value = recvfrom(socket_fd, user_input, MAXSIZE, 0, (struct sockaddr *)&from, &fsize);
-  if (result_value < 0)
+  while (1)
   {
-    perror("Error");
-    exit(1);
-  }
+    result_value = recvfrom(socket_fd, user_input, MAXSIZE, 0, (struct sockaddr *)&from, &fsize);
+    if (result_value < 0)
+    {
+      perror("Error");
+      exit(1);
+    }
 
-  char * user = strtok(user_input, "/");
-  char * password = strtok(NULL, "/");
-  char * massage = strtok(NULL, "/");
+    char * user = strtok(user_input, "/");
+    char * password = strtok(NULL, "/");
 
-  char * expected_user = "Idan";
-  char * expected_password = "Shoshana";
+    char * expected_user = "Idan";
+    char * expected_password = "Shoshana";
 
-  if(strcmp(user, expected_user) == 0 && strcmp(password, expected_password) == 0)
-  {
-    printf("OK\n");
-    result_value = sendto(socket_fd, "OK", BUF_SIZE, 0, (struct sockaddr *)&from, sizeof(from));
-  } 
-  else 
-  {
-    printf("NO\n");
-    result_value = sendto(socket_fd, "NO", BUF_SIZE, 0, (struct sockaddr *)&from, sizeof(from));
-  }
+    if(strcmp(user, expected_user) == 0 && strcmp(password, expected_password) == 0)
+    {
+      printf("OK\n");
+      result_value = sendto(socket_fd, "OK", BUF_SIZE, 0, (struct sockaddr *)&from, sizeof(from));
+    } 
+    else 
+    {
+      printf("NO\n");
+      result_value = sendto(socket_fd, "NO", BUF_SIZE, 0, (struct sockaddr *)&from, sizeof(from));
+    }
 
-
-  if(result_value < 0)
-  {
-    perror("A server error occurred");
-    exit(2);
+    if(result_value < 0)
+    {
+      perror("A server error occurred");
+      exit(2);
+    }
   }
 
   return 0;
